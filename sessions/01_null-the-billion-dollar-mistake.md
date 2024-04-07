@@ -1,15 +1,15 @@
-# Null. The billion dollar mistake
+# Null — The billion dollar mistake
 
-## What is `null`?
-This is a DataType is the Javascript programming language and the major case of application crashing in the Javascript ecosystem. It's also referred to as the Billion Dollar Mistake by the Creator — Tony Hoare
+# What is `null`?
+This is a DataType in the Javascript programming language and is the major cause of program crashes in the Javascript ecosystem. It's also referred to as the Billion Dollar Mistake by the Creator — Tony Hoare
 
-The base idea is that `null` made programmers write unsafe code which eventually cost systems to fail and greatly increases the cost of maintaining such systems.
+The base idea is that `null` made programmers write unsafe code which eventually caused systems to fail and greatly increases the cost of maintaining such systems.
 
 ## 01. Do you really understand `null`
 Assuming we have a function that gets the user's name from a user object. 
 ```js
 function getUsername(user) {
-    if (typeof user === 'object') return null;
+    if (typeof user !== 'object') return null;
     return user.name
 }
 ```
@@ -26,14 +26,14 @@ Now, look at the code snippet from Case #1 and the flaw in the `getUsername()` w
 
 ## 02. `Null` and `undefined` are the same
 
-They are a few misconceptions about `undefined` and `null` behaving the same. In my opinion, one can never be too careful with thime. Run the code below before proceeding.
+They are a few misconceptions about `undefined` and `null` behaving the same. In my opinion, one can never be too careful with them. Run the code below before proceeding.
 ```js
 let authUser = undefined;
 let user = null
 
 console.log(user === authUser); // type the output here
 ```
-I often see Javascript programmers cehckout for nullish values using the code below. 
+I often see Javascript programmers check for null-ish values using the code below. 
 
 ```js
 function isAuthenticated(user) {
@@ -43,7 +43,7 @@ function isAuthenticated(user) {
     return true;
 }
 ```
-The conditional above works well for nullish values like `undefined`, `null` or an empty string. But not for an empty Object(`{}`), Array (`[]`) etc. You can verify from the code snippet below.
+The conditional above works well for null-ish values like `undefined`, `null` or an empty string. But not for an empty Object(`{}`), Array (`[]`) etc. You can verify from the code snippet below.
 
 ```js
 const empty_string = "";
@@ -69,7 +69,7 @@ function isAuthenticated(user) {
     return true;
 }
 ```
-> Note: Extra caution is required when checking for nullish values especially `undefined` and `null`. This little detail is the sole reason for many system/application crashes.
+> Note: Extra caution is required when checking for null-ish values especially `undefined` and `null`. This little detail is the sole reason for many system/application crashes.
 
 ## 03. Working with `null` or `undefined` Object property values
 Well for the most part when solving problems we use Javascript Objects. Let's see the problems while using `null` and `undefined` as property values.
