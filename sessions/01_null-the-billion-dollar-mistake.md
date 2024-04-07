@@ -1,11 +1,11 @@
 # Null. The billion dollar mistake
 
-# What is null?
-This is a DataType is Javascript and the major case of application crashing in the Javascript ecosystem. It's also referred to as the Billion Dollar Mistake by the Creator — Tony Hoare
+## What is `null`?
+This is a DataType is the Javascript programming language and the major case of application crashing in the Javascript ecosystem. It's also referred to as the Billion Dollar Mistake by the Creator — Tony Hoare
 
 The base idea is that `null` made programmers write unsafe code which eventually cost systems to fail and greatly increases the cost of maintaining such systems.
 
-## 01. Do you really understand null
+## 01. Do you really understand `null`
 Assuming we have a function that gets the user's name from a user object. 
 ```js
 function getUsername(user) {
@@ -108,3 +108,56 @@ getUsername(user2);
 ```
 
 > Unless your object is hard-coded with the program. Ensure to expect this kind of error
+
+#### Problem Set #1
+Moje was asked to build a cart system where customer can add items to the cart and then fetch and display the customer's shipping details from an endpoint. So Moje starts out by making a simple store for all cart/checkout information.
+
+```js
+const cartStore = {
+    items: [{ quantity: 1, item: { name: "Carrot" }}],
+    deliveryAdress: null, // <-- 👀
+};
+```
+
+Now Moje's `cartStore` looks very simple, since it just contains 2 properties namely `items` and `deliveryAdress`. Looking at the code we can see that `deliveryAdress` is set to `null` since the value isn't available yet.
+
+```js
+const cartStore = {
+    items: [{ quantity: 1, item: { name: "Carrot" }}],
+    deliveryAddress: null
+}
+
+// fetch the shipping address details from an endpoint
+// eg. { street: "212 James Street" }
+const shipping_details = await fetchShippingDetails();
+cartStore.deliveryAddress = shipping_details;
+
+// print the street address in all caps
+cartStore.deliveryAddress.street.toUpperCase();
+```
+Moje is pretty happy that he finally solved the problem. But little does he know there are bugs in this solution. Take a few seconds to inspect the above code. See if you can discover the bugs.
+
+### Problem Set #2
+Run the code below. Discover and fix the bugs.  
+> Hint: Be cautions of the `undefined`, `null` or `nullish` variables.
+
+```js
+function persistUser(user, options) {
+   const opts = { 
+     storage: "sessionStorage", 
+     ...options
+   };
+
+   if (option.storage === 'sessionStorage') { //
+     sessionStorage.setItem('userInfo', opt.serialize(user));
+   }
+   
+   if (option.storage === 'localStorage') {
+     localStorage.setItem('userInfo', opt.seralize(user));
+   }
+}
+
+// Don't modify the code below
+persistUser({ id: "42", firstName: "Kelvin" })
+persistUser({ id: "42", firstName: "Kelvin" }, {}) 
+```
